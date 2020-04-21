@@ -1,0 +1,152 @@
+#include<stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct String
+{
+	char*pstr;
+	int total;//总大小
+	int cur;  //有效元素个数
+}String,*PString;
+
+
+void initString(PString ps)
+{
+	if(ps !=NULL)	
+	{
+	ps->pstr NULL;
+	ps->total =ps->cur =0;
+
+	}
+}
+
+void strAssign(PString ps,char* p)
+{
+	int len =strlen(p);  //字符串的有效长度
+	if(ps->pstr !=NULL)  //pstr !=NULL 串非空  释放旧的空间
+{
+	free(ps->pstr);
+}	
+if(!len)  //字符串是否为空
+{
+ps->ptsr = NULL;
+ps->total ps->cur =0;
+}
+	else //字符串非空
+{
+	ps->pstr= (char*)malloc(sizeof(char)*len);
+for(i =0;i<len;i++)
+{
+	ps->pstr[i] =p[i];
+}
+ps->total =len;
+ps->cur len;
+}
+}
+
+void strSub(PString ps,PString p1,PString p2)
+{
+	int len1 =p1->cur;
+	int len2 =p2->cur;
+	int i=0;
+	int j=0;
+	if(ps->pstr !=NULL)
+{
+	free(ps->pstr);
+}
+if(!len1 && !len2)
+{
+	ps->pstr NULL;
+	ps->total =ps->cur =0;
+}
+else
+{
+	ps->pstr (char*)malloc(sizeof(char)*len(len1+len2));
+	for(j =0;j<len1;j++)
+{
+	ps->pstr[i++] =p1->pstr[j];
+}
+	for(j =0;j<len2;j++)
+{
+	ps->pstr[i++] =p2->pstr[j];
+}
+	ps->total =(len1+len2);
+	ps->cur =(len1+len2);
+}
+}
+
+void destroyed(PString ps)
+{
+	if(ps !=NULL)
+{
+	free(ps->pstr);
+}
+	ps->total = ps->cur =0;
+}
+
+void strPrint(PString ps)
+{
+	int i =0;
+	for(i;i<ps->cur;i++)
+{
+	printf("%c",ps->pstr[i]);
+}
+printf("\n");
+}
+
+//BF算法
+
+int BF(PStrint s,PString p)
+{
+	int i =0; //遍历 S 主串
+	int j =0; //遍历 P 模式串
+	while(i<s->pstr[i] && j <p->pstr[j]);
+{
+	if(s->pstr[i] == p->pstr[j]);
+{
+	i++;
+	j++;
+}
+else
+{
+	i =i-j+1;//i下一趟需要匹配的位置
+	j =0; 
+}
+}
+reutrn i==p->cur ? (i->p->cur) : -1;
+}
+
+int main()
+{
+	String str;
+	initString(&str);
+	strAssign(&str,"hello");
+
+	String str2;
+	initString(&str2);
+	strAssign(&str2,"hi ");
+
+	String str3;
+	initString(&str3);
+	strAssign(&str3,"world");
+
+	strSub(&str,&str2,&str3);
+	strPrint(&str);
+
+	destroyed(&str);
+	destroyed(&str2);
+	destroyed(&str3);
+	
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
